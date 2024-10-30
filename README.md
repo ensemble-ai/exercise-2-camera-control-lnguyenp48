@@ -1,5 +1,33 @@
 # Camera Control Exercise
 
+# LYNN'S CHANGELOG!!!
+## tasks
+### general
+script files created, camera cycler goes through each camera properly! yay
+- thank u casey on the discord for the tip of making the cameras children of the selector
+stage1 completed stage2 started. i am a little behind but this is fine i can figure it out
+### stage1 - position lock
+complete!
+- script: pos_lock.gd
+- something i noticed is that zooming in and out changes whether the cross is above or below Vessel
+- not sure if this is fine to leave? might investigate later
+### stage 2 - auto scrolling
+WIP, currently focused on this :)
+- script: auto_scroll.gd
+- added export vars
+### stage 3 - position lock w lerp smoothing
+WIP
+- script: pos_lock_lerp.gd
+- added export vars
+### stage 4 - lerp smooth w target focus
+WIP
+- script: lerp_leading.gd
+- added export vars
+### stage 5 - 4way speedup push zone
+WIP
+- script: four_way_push.gd
+- added export vars
+
 ## Description
 
 Your goal is to create several swappable camera control scripts for a top-down terraforming simulator.
@@ -17,11 +45,11 @@ Stage 1 is worth 10 points. Stages 2, 3, 4, and 5 are worth 15 points each. The 
 
 The due date for this exercise is listed in Canvas. The master branch, as found on your individual exercise repository, will be evaluated.
 
-## Exercise Stages 
+## Exercise Stages
 
 The following are the basic criteria for each stage:
-* Each stage requires you to implement a type of camera controller. 
-* Each of your five controllers should extend `CameraControllerBase`. 
+* Each stage requires you to implement a type of camera controller.
+* Each of your five controllers should extend `CameraControllerBase`.
 * Each of your camera controller implementations should be added as a child of the `World` node in the hierarchy.
 * You should bind the `Vessel` node to the `Target` exported field via the editor to your cameras.
 * Bind your camera controllers to the `Array[CameraControllerBase]` in the `CameraSelector`.
@@ -33,7 +61,7 @@ The following are the basic criteria for each stage:
 
 This camera controller should always be centered on the `Vessel`. There are no additional fields to be serialized and usable in the inspector.
 
-Your controller should draw a 5 by 5 unit cross in the center of the screen when `draw_camera_logic` is true. 
+Your controller should draw a 5 by 5 unit cross in the center of the screen when `draw_camera_logic` is true.
 
 ![position-locking](https://lh6.googleusercontent.com/Bh_vzER7pXFZgRMsi158LA_q3Dg9LnykuR1cW3f8K8hgSI-BlNKLfocuGAhHRxbrcaeadtay_MgS55CO4eD0jyDIy0QB9SvAPHFnWQlDMKfN9QQJkL4RxAKc28_ymrCz) as found in Terraria, ©2011 Re-Logic.
 
@@ -41,7 +69,7 @@ Your controller should draw a 5 by 5 unit cross in the center of the screen when
 
 In the grand tradition of [shmups](http://www.shmups.com/), this camera controller implements a frame-bound autoscroller. The player should be able to move inside a box constantly moving on the `z-x` plane denoted by `autoscroll_speed`. If the player is lagging behind and is touching the left edge of the box, the player should be pushed forward by that box edge.
 
-Your controller should draw the frame border box when `draw_camera_logic` is true. 
+Your controller should draw the frame border box when `draw_camera_logic` is true.
 
 Required exported fields:
 * `Vector2 top_teft` - the top left corner of the frame border box.
@@ -59,7 +87,7 @@ The linear intepolation, or lerp, in this camera is implicit in the parameteriza
 Your controller should draw a 5 by 5 unit cross in the center of the screen when `draw_camera_logic` is true.
 
 Required exported fields:
-* `float follow_speed` - The speed at which the camera follows the player when the player is moving. This can either be a tuned static value or a ratio of the vessel's speed. 
+* `float follow_speed` - The speed at which the camera follows the player when the player is moving. This can either be a tuned static value or a ratio of the vessel's speed.
 * `float catchup_speed` - When the player has stopped, what speed shoud the camera move to match the vesse's position.
 * `float leash_distance` - The maxiumum allowed distance between the vessel and the center of the camera.
 
@@ -85,7 +113,7 @@ Required exported fields:
 
 This camera controller should implement a 4-directional version of the speedup push zone as seen in Super Mario Bros. The controller should move at the speed of the target multiplied by the `push_ratio` required exported variable in the direction of target's movement when the target is 1) moving, 2) not touching the outer zone pushbox, and 3) are betwen the speedup zone and the pushbox border. When the target is touching one side of the outer pushbox, the camera will move at the target's current movement speed in the direction of the touched side of the border box and at the `push_ratio` in the other direction (e.g., when the target is touching the top middle of the pushing box but is moving to the upper right, the camera will move at the target's speed in the y direction but at the `push_ratio` in the x direction). If the target touches two sides of the outer pushbox (i.e., the player is in the corner of the box), the camera will move at full player speed in both x and y directions. If the target moves within the inner-most area (i.e., inside the speedup zone's border and not between the speedup zone the outer pushbox), the camera should not move.
 
-Your controller should draw the push zone border box when `draw_camera_logic` is true. 
+Your controller should draw the push zone border box when `draw_camera_logic` is true.
 
 Required exported fields:
 * `float push_ratio` - The ratio that the camera should move toward the target when it is not at the edge of the outer pushbox.
