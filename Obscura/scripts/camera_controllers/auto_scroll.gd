@@ -2,11 +2,12 @@ class_name AutoScroll
 extends CameraControllerBase
 
 
-@export var box_width:float = 5.0
-@export var box_height:float = 5.0
-@export var top_left:Vector2
-@export var bottom_right:Vector2
-@export var autoscroll_speed:Vector3
+@export var box_width:float = 7.0
+@export var box_height:float = 7.0
+
+@export var top_left := Vector2(7.0, -7.0)
+@export var bottom_right := Vector2(-7.0, 7.0)
+@export var autoscroll_speed := Vector3(0.25, 0.0, 0.0)
 
 
 func _ready() -> void:
@@ -16,16 +17,27 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	if !current:
+		# makes sure the autoscroller doesnt keep going on its own lol
+		# will prolly be removed once i get the boundaries working
+		global_position = target.global_position
 		return
 		
 	if draw_camera_logic:
 		draw_logic()
 		
 	var tpos = target.global_position
+	var cpos = global_position
 	
-	# camera position locked onto vessel/target position
-	global_position.x = tpos.x
-	global_position.z = tpos.z
+	# camera position automatically keeps moving!
+	global_position.x += autoscroll_speed.x
+	global_position.z += autoscroll_speed.z
+	
+	# player position also moves with autoscroll
+	target.global_position.x += autoscroll_speed.x
+	target.global_position.z += autoscroll_speed.z
+	
+	# note to self for tmrw: add boundary checks :3
+	# pssst refer to pushbox thatll help u
 	
 	super(delta)
 

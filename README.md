@@ -5,7 +5,7 @@
 ### general
 script files created, camera cycler goes through each camera properly! yay
 - thank u casey on the discord for the tip of making the cameras children of the selector
-stage1 completed stage2 started. i am a little behind but this is fine i can figure it out
+- stage1 completed stage2 started. i am a little behind but this is fine i can figure it out
 ### stage1 - position lock
 complete!
 - script: pos_lock.gd
@@ -15,6 +15,7 @@ complete!
 WIP, currently focused on this :)
 - script: auto_scroll.gd
 - added export vars
+- now it's scrolling!!! just boundaries needed and then stage 2 will be done
 ### stage 3 - position lock w lerp smoothing
 WIP
 - script: pos_lock_lerp.gd
