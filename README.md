@@ -3,23 +3,24 @@
 # LYNN'S CHANGELOG!!!
 ## tasks
 ### general
-script files created, camera cycler goes through each camera properly! yay
-- thank u casey on the discord for the tip of making the cameras children of the selector
-- stage1 completed stage2 started. i am a little behind but this is fine i can figure it out
+stage 2 done stage 3 done??? i dont know if i did it right??
+note to self. rewatch the overview
+- working on stage 4 now
 ### stage1 - position lock
 complete!
 - script: pos_lock.gd
 - something i noticed is that zooming in and out changes whether the cross is above or below Vessel
 - not sure if this is fine to leave? might investigate later
 ### stage 2 - auto scrolling
-WIP, currently focused on this :)
+complete!
 - script: auto_scroll.gd
-- added export vars
-- now it's scrolling!!! just boundaries needed and then stage 2 will be done
+- not sure if we should be responsible for handling what happens when the autoscroll reaches the end of the map; ask later...
 ### stage 3 - position lock w lerp smoothing
-WIP
+complete...?
 - script: pos_lock_lerp.gd
-- added export vars
+- it's working but also. it's not technically linked to a ratio of the vessel speed.
+- also works a little poorly when in hyperspeed
+- try reworking this later
 ### stage 4 - lerp smooth w target focus
 WIP
 - script: lerp_leading.gd

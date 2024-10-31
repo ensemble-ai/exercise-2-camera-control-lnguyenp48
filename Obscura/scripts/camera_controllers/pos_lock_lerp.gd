@@ -4,9 +4,10 @@ extends CameraControllerBase
 
 @export var cross_width:float = 7.0
 @export var cross_height:float = 7.0
-@export var follow_speed:float = 5.0
-@export var catchup_speed:float = 6.0
-@export var leash_distance:float = 7.0
+
+@export var follow_speed:float = 10.0
+@export var catchup_speed:float = 5.0
+@export var leash_distance:float = 30.0
 
 
 func _ready() -> void:
@@ -22,10 +23,21 @@ func _process(delta: float) -> void:
 		draw_logic()
 		
 	var tpos = target.global_position
+	var cpos = global_position
+	var x_distance = tpos.x - cpos.x
+	var z_distance = tpos.z - cpos.z
 	
-	# camera position locked onto vessel/target position
-	global_position.x = tpos.x
-	global_position.z = tpos.z
+	# check leash distance x
+	if abs(x_distance) > leash_distance:
+		global_position.x += x_distance / follow_speed
+	elif x_distance != 0:
+		global_position.x += x_distance / catchup_speed
+	#check leash distance z
+	if abs(z_distance) > leash_distance:
+		global_position.z += z_distance / follow_speed
+	elif z_distance != 0:
+		global_position.z += z_distance / catchup_speed
+		
 	
 	super(delta)
 
