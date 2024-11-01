@@ -66,10 +66,10 @@ func draw_logic() -> void:
 	mesh_instance.mesh = immediate_mesh
 	mesh_instance.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
 	
-	var left:float = -_box_width / 2
-	var right:float = _box_width / 2
-	var top:float = -_box_height / 2
-	var bottom:float = _box_height / 2
+	var left:float = -_box_width / 2.0
+	var right:float = _box_width / 2.0
+	var top:float = -_box_height / 2.0
+	var bottom:float = _box_height / 2.0
 	
 	immediate_mesh.surface_begin(Mesh.PRIMITIVE_LINES, material)
 	immediate_mesh.surface_add_vertex(Vector3(right, 0, top))

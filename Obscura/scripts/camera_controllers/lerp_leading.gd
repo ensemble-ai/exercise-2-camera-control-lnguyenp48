@@ -2,12 +2,13 @@ class_name LerpLeading
 extends CameraControllerBase
 
 
-@export var cross_width:float = 6.0
-@export var cross_height:float = 6.0
-@export var lead_speed:float = 5.0
-@export var catchup_delay_duration:float = 6.0
+@export var cross_width:float = 5.0
+@export var cross_height:float = 5.0
+
+@export var lead_speed:float = 4.0
+@export var catchup_delay_duration:float = 0.5
 @export var catchup_speed:float = 5.0
-@export var leash_distance:float = 30.0
+@export var leash_distance:float = 5.0
 
 
 func _ready() -> void:
@@ -17,16 +18,30 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	if !current:
+		global_position = target.global_position
 		return
 		
 	if draw_camera_logic:
 		draw_logic()
 		
 	var tpos = target.global_position
+	var cpos = global_position
+	var x_distance = tpos.x - cpos.x
+	var z_distance = tpos.z - cpos.z
 	
-	# camera position locked onto vessel/target position
-	global_position.x = tpos.x
-	global_position.z = tpos.z
+	if abs(x_distance) > leash_distance:
+		global_position.x += target.velocity.x * delta
+	elif abs(x_distance) < leash_distance and x_distance != 0:
+		global_position.x += lead_speed * target.velocity.x * delta
+		
+	if abs(z_distance) > leash_distance:
+		global_position.z += target.velocity.z * delta
+	elif abs(z_distance) < leash_distance and z_distance != 0:
+		global_position.z += lead_speed * target.velocity.z * delta
+
+	if target.velocity.z == 0 and target.velocity.x == 0:
+		global_position.z += z_distance / catchup_speed
+		global_position.x += x_distance / catchup_speed
 	
 	super(delta)
 

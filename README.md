@@ -3,32 +3,28 @@
 # LYNN'S CHANGELOG!!!
 ## tasks
 ### general
-stage 2 done stage 3 done??? i dont know if i did it right??
-note to self. rewatch the overview
-- working on stage 4 now
+stages 1, 2, and 3 are fully complete!
+- i spent too long on 3 please look at it
+stages 4 and 5 are kind of functioning?
+- some flaws. need to fix. im just glad i Have something to submit...
 ### stage1 - position lock
-complete!
-- script: pos_lock.gd
-- something i noticed is that zooming in and out changes whether the cross is above or below Vessel
-- not sure if this is fine to leave? might investigate later
+complete! script: pos_lock.gd
 ### stage 2 - auto scrolling
-complete!
-- script: auto_scroll.gd
-- not sure if we should be responsible for handling what happens when the autoscroll reaches the end of the map; ask later...
+complete! script: auto_scroll.gd
 ### stage 3 - position lock w lerp smoothing
-complete...?
-- script: pos_lock_lerp.gd
-- it's working but also. it's not technically linked to a ratio of the vessel speed.
-- also works a little poorly when in hyperspeed
-- try reworking this later
+complete! script: pos_lock_lerp.gd
 ### stage 4 - lerp smooth w target focus
-WIP
-- script: lerp_leading.gd
-- added export vars
+finished but with a handful of flaws. script: lerp_leading.gd
+- some odd cases where if you hold the input keys in a certain way, the camera velocity is locked in the previous direction and wont move over to the new direction input
+    - i think it's because of the way i arranged the conditionals
+- it's also a little too snappy
 ### stage 5 - 4way speedup push zone
-WIP
-- script: four_way_push.gd
-- added export vars
+finished but with a few flaws. script: four_way_push.gd
+- vessel doesnt reach the right and bottom sides of the pushbox. i think it's cause of the way the boundary checks work, if i were to compare the difference between the edges for right and bottom to something a little bigger than zero, then i think it'd work fine. but i am not sure how to go about figuring that out it is so late
+- i dont think i fully implemented the push_ratio? i think i misunderstood something
+
+done with as much as i could within time! final push to master, 11/1/24 3:22 AM PST
+- may send an email in the morning asking about late status but unlikely, that would make two assignments in a row being late and i do not want to inconvenience anyone :')
 
 ## Description
 

@@ -2,12 +2,12 @@ class_name PosLockLerp
 extends CameraControllerBase
 
 
-@export var cross_width:float = 7.0
-@export var cross_height:float = 7.0
+@export var cross_width:float = 5.0
+@export var cross_height:float = 5.0
 
-@export var follow_speed:float = 10.0
+@export var follow_speed:float = 0.6
 @export var catchup_speed:float = 5.0
-@export var leash_distance:float = 30.0
+@export var leash_distance:float = 5.0
 
 
 func _ready() -> void:
@@ -17,6 +17,7 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	if !current:
+		global_position = target.global_position
 		return
 		
 	if draw_camera_logic:
@@ -27,17 +28,23 @@ func _process(delta: float) -> void:
 	var x_distance = tpos.x - cpos.x
 	var z_distance = tpos.z - cpos.z
 	
-	# check leash distance x
+	# end of leash -> same speed as vessel
 	if abs(x_distance) > leash_distance:
-		global_position.x += x_distance / follow_speed
-	elif x_distance != 0:
-		global_position.x += x_distance / catchup_speed
-	#check leash distance z
+		global_position.x += target.velocity.x * delta
+	elif abs(x_distance) < leash_distance and x_distance != 0:
+		# moving -> trail behind vessel
+		global_position.x += follow_speed * target.velocity.x * delta
+
+	# similar to x vector function
 	if abs(z_distance) > leash_distance:
-		global_position.z += z_distance / follow_speed
-	elif z_distance != 0:
+		global_position.z += target.velocity.z * delta
+	elif abs(z_distance) < leash_distance and z_distance != 0:
+		global_position.z += follow_speed * target.velocity.z * delta
+			
+	if target.velocity.x == 0 and target.velocity.z == 0:
+		# not moving -> catch up to vessel, close distance
+		global_position.x += x_distance / catchup_speed
 		global_position.z += z_distance / catchup_speed
-		
 	
 	super(delta)
 
