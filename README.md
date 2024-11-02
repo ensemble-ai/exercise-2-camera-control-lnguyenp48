@@ -5,7 +5,8 @@
 ### general
 stages 1, 2, and 3 are fully complete!
 - i spent too long on 3 please look at it
-stages 4 and 5 are kind of functioning?
+
+~~stages 4 and 5 are kind of functioning?~~ stage 5 is working now, i think! 4 not so much
 - some flaws. need to fix. im just glad i Have something to submit...
 ### stage1 - position lock
 complete! script: pos_lock.gd
@@ -18,13 +19,16 @@ finished but with a handful of flaws. script: lerp_leading.gd
 - some odd cases where if you hold the input keys in a certain way, the camera velocity is locked in the previous direction and wont move over to the new direction input
     - i think it's because of the way i arranged the conditionals
 - it's also a little too snappy
+- attempted to add a timer. it did not go very well :( it only runs once,, i think i am misunderstanding something. will ask in OH
 ### stage 5 - 4way speedup push zone
-finished but with a few flaws. script: four_way_push.gd
-- vessel doesnt reach the right and bottom sides of the pushbox. i think it's cause of the way the boundary checks work, if i were to compare the difference between the edges for right and bottom to something a little bigger than zero, then i think it'd work fine. but i am not sure how to go about figuring that out it is so late
-- i dont think i fully implemented the push_ratio? i think i misunderstood something
+complete?? script: four_way_push.gd
+- i still don't know if i put in the push_ratio right
 
 done with as much as i could within time! final push to master, 11/1/24 3:22 AM PST
 - may send an email in the morning asking about late status but unlikely, that would make two assignments in a row being late and i do not want to inconvenience anyone :')
+
+late commit 11/1/24 10:33 PM PST
+- sending an email but like very late so if its better to grade the commit before the official deadline please use that one
 
 ## Description
 

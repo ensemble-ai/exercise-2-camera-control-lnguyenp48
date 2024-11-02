@@ -2,7 +2,7 @@ class_name FourWayPush
 extends CameraControllerBase
 
 
-@export var push_ratio:float = 0.6
+@export var push_ratio:float = 0.4
 @export var pushbox_top_left := Vector2(-9.0, 6.0)
 @export var pushbox_bottom_right := Vector2(9.0, -6.0)
 @export var speedup_zone_top_left := Vector2(-5.0, 4.0)
@@ -25,6 +25,7 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	if !current:
+		global_position = target.global_position
 		return
 		
 	if draw_camera_logic:
@@ -55,7 +56,7 @@ func _process(delta: float) -> void:
 		if push_right_edge > 0:
 			global_position.x += push_right_edge
 		else:
-			global_position.x += speed_right_edge * target.velocity.x * push_ratio * delta
+			global_position.x -= speed_right_edge * target.velocity.x * push_ratio * delta
 	#top
 	if speed_top_edge < 0:
 		if push_top_edge < 0:
@@ -67,7 +68,7 @@ func _process(delta: float) -> void:
 		if push_bottom_edge > 0:
 			global_position.z += push_bottom_edge
 		else:
-			global_position.z += speed_bottom_edge * target.velocity.z * push_ratio * delta
+			global_position.z -= speed_bottom_edge * target.velocity.z * push_ratio * delta
 	
 	super(delta)
 

@@ -6,9 +6,11 @@ extends CameraControllerBase
 @export var cross_height:float = 5.0
 
 @export var lead_speed:float = 4.0
-@export var catchup_delay_duration:float = 0.5
+@export var catchup_delay_duration:float = 3.0
 @export var catchup_speed:float = 5.0
 @export var leash_distance:float = 5.0
+
+var _timer:Timer
 
 
 func _ready() -> void:
@@ -29,19 +31,18 @@ func _process(delta: float) -> void:
 	var x_distance = tpos.x - cpos.x
 	var z_distance = tpos.z - cpos.z
 	
-	if abs(x_distance) > leash_distance:
-		global_position.x += target.velocity.x * delta
-	elif abs(x_distance) < leash_distance and x_distance != 0:
-		global_position.x += lead_speed * target.velocity.x * delta
+	if abs(x_distance) < leash_distance:
+		global_position.x += lead_speed * target.velocity.x * delta 
+	global_position.x += target.velocity.x * delta
 		
-	if abs(z_distance) > leash_distance:
-		global_position.z += target.velocity.z * delta
-	elif abs(z_distance) < leash_distance and z_distance != 0:
+	if abs(z_distance) < leash_distance:
 		global_position.z += lead_speed * target.velocity.z * delta
-
+	global_position.z += target.velocity.z * delta
+	
 	if target.velocity.z == 0 and target.velocity.x == 0:
-		global_position.z += z_distance / catchup_speed
-		global_position.x += x_distance / catchup_speed
+		if _manage_timer(catchup_delay_duration):
+			global_position.z += z_distance / catchup_speed
+			global_position.x += x_distance / catchup_speed
 	
 	super(delta)
 
@@ -81,3 +82,15 @@ func draw_logic() -> void:
 	#mesh is freed after one update of _process
 	await get_tree().process_frame
 	mesh_instance.queue_free()
+
+
+func _manage_timer(duration: float) -> bool:
+	if _timer == null:
+		_timer = Timer.new()
+		add_child(_timer)
+		_timer.one_shot = true
+		_timer.start(duration)
+	if _timer.is_stopped():
+		return true
+	else:
+		return false

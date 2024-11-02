@@ -20,7 +20,6 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if !current:
 		# makes sure the autoscroller doesnt keep going on its own lol
-		# will prolly be removed once i get the boundaries working
 		global_position = target.global_position
 		return
 		
