@@ -73,12 +73,12 @@ ___
 
 ___
 #### Justification ##### 
-The box is constantly moving in the z-x plane. The vessel is able to move around in the box that is constantly moving. The vessel gets pushed by the left edge of the box if it is lagging behind. The vessel cannot leave the box in any x or z direction.
+The box is constantly moving in the z-x plane. The vessel is able to move around in the box that is constantly moving. The vessel gets pushed by the left edge of the box if it is lagging behind. The vessel cannot leave the box in any x or z direction. There is a frame border box.
 
 ___
 ### Stage 3 ###
 
-- [ ] Perfect
+- [x] Perfect
 - [ ] Great
 - [ ] Good
 - [ ] Satisfactory
@@ -86,7 +86,7 @@ ___
 
 ___
 #### Justification ##### 
-Write Justification here.
+When the vessel moves, the vessel moves ahead of the camera. The camera follows the vessel at follow_speed. When the vessel stops, the camera catches up to the vessel at catchup_speed. The vessel cannot be more than leash_distance units away from the camera. When the vessel comes back to the center of the camera, the vessel does not snap and the transition is very smooth. There is a 5 by 5 unit cross on the center of the screen.
 
 ___
 ### Stage 4 ###
@@ -94,12 +94,12 @@ ___
 - [ ] Perfect
 - [ ] Great
 - [ ] Good
-- [ ] Satisfactory
+- [x] Satisfactory
 - [ ] Unsatisfactory
 
 ___
 #### Justification ##### 
-Write Justification here.
+One major flaw would be that the camera does not work if more than one input are processed before the camera comes back to the center of the camera. For example, if you press W and then press D before the vessel reaches the center of the camera, the vessel gets stuck in place. This is better seen if you press a combination of inputs such as W and A and then hold down D. The vessel gets stuck in the corner and does not move to the left. Additionally, another major flaw would be that the timer only works once. Other than that, if you wait for the vessel to catch up then the camera does work. The camera moves in the direction of the input at lead_speed and catches up to the vessel at catchup_speed when the vessel stops. The vessel cannot be more than leash_distance units away from the camera. There is a 5 by 5 unit cross at the center of the screen.
 
 ___
 ### Stage 5 ###
@@ -107,12 +107,12 @@ ___
 - [ ] Perfect
 - [ ] Great
 - [ ] Good
-- [ ] Satisfactory
+- [x] Satisfactory
 - [ ] Unsatisfactory
 
 ___
 #### Justification ##### 
-Write Justification here.
+One major flaw is that when the vessel is in the speedup zone, the camera moves in the opposite direction that the vessel is going. Another major flaw would be the implementation of the speedup zone that is supposed to speedup the camera in the x direction and z direction seperately. For example, if the vessel is in the speedup zone, moving in the x direction, but touching the top edge of the pushbox, the camera should move at push_ratio in the x direction but at full speed in the z direction. The implementation of the speedup zone is set up such that the checks for speeding up in the x or z direction are split up into quadrants like a tic tac toe board. The corner quadrants speed up the vessel in both the x and z directions no matter what the input is. For example, the top left quadrant will only speed up the vessel to the right and downwards. If the quadrant is a not a corner quadrant then it will only speed it up in one direction no matter what the input is. For example, the quadrant in between the top left and bottom left quadrant will only speed the vessel up to the right even if other directions are inputted. Other than these flaws, the camera meets the other requirements. The camera does not move in the inner-most area. The camera moves at full speed in one direction when it touches a side of the pushbox. The camera moves at full speed in both the x and z directions when it touches a corner of a pushbox. A minor flaw would be that draw_logic() draws both the speedup zone and pushbox when it is only supposed to draw the pushbox.
 ___
 # Code Style #
 
