@@ -116,6 +116,7 @@ One major flaw is that when the vessel is in the speedup zone, the camera moves 
 ___
 # Code Style #
 
+Style guide: https://docs.godotengine.org/en/stable/tutorials/scripting/gdscript/gdscript_styleguide.html
 
 ### Description ###
 Check the scripts to see if the student code adheres to the dotnet style guide.
@@ -131,7 +132,21 @@ Please refer to the first code review template on how to do a permalink.
 
 #### Style Guide Infractions ####
 
+One example of a [comment](https://github.com/ensemble-ai/exercise-2-camera-control-lnguyenp48/blob/865fcc9f7dde09e6965db3a0c446e90192850802/Obscura/scripts/camera_controllers/auto_scroll.gd#L44) that is not disabled code and does not begin with a space.
+
+Does not use one blank line to seperate [this line of code](https://github.com/ensemble-ai/exercise-2-camera-control-lnguyenp48/blob/865fcc9f7dde09e6965db3a0c446e90192850802/Obscura/scripts/camera_controllers/lerp_leading.gd#L36) and the logical section above it. The same happens [here](https://github.com/ensemble-ai/exercise-2-camera-control-lnguyenp48/blob/865fcc9f7dde09e6965db3a0c446e90192850802/Obscura/scripts/camera_controllers/lerp_leading.gd#L40).
+
+[tpos](https://github.com/ensemble-ai/exercise-2-camera-control-lnguyenp48/blob/865fcc9f7dde09e6965db3a0c446e90192850802/Obscura/scripts/camera_controllers/auto_scroll.gd#L29) and [cpos](https://github.com/ensemble-ai/exercise-2-camera-control-lnguyenp48/blob/865fcc9f7dde09e6965db3a0c446e90192850802/Obscura/scripts/camera_controllers/auto_scroll.gd#L30) should be defined closer to [where](https://github.com/ensemble-ai/exercise-2-camera-control-lnguyenp48/blob/865fcc9f7dde09e6965db3a0c446e90192850802/Obscura/scripts/camera_controllers/auto_scroll.gd#L41) they are used.
+
 #### Style Guide Exemplars ####
+
+The code does a good job at using [private variables](https://github.com/ensemble-ai/exercise-2-camera-control-lnguyenp48/blob/865fcc9f7dde09e6965db3a0c446e90192850802/Obscura/scripts/camera_controllers/auto_scroll.gd#L9) and ensuring that they come after export variables which is the proper order according to the style guide.
+
+I could not find any lines of code that were over 100 characters.
+
+This [private function](https://github.com/ensemble-ai/exercise-2-camera-control-lnguyenp48/blob/865fcc9f7dde09e6965db3a0c446e90192850802/Obscura/scripts/camera_controllers/lerp_leading.gd#L87) starts with an underscore.
+
+Uses snake_case for functions and variables and uses PascalCase for class and node names.
 
 ___
 #### Put style guide infractures ####
@@ -151,4 +166,16 @@ This should be similar to the Code Style justification.
 
 #### Best Practices Infractions ####
 
+Some [variables](https://github.com/ensemble-ai/exercise-2-camera-control-lnguyenp48/blob/865fcc9f7dde09e6965db3a0c446e90192850802/Obscura/scripts/camera_controllers/pos_lock_lerp.gd#L28) are not type hinted.
+
+This variable name [speed_left_edge](https://github.com/ensemble-ai/exercise-2-camera-control-lnguyenp48/blob/865fcc9f7dde09e6965db3a0c446e90192850802/Obscura/scripts/camera_controllers/four_way_push.gd#L38) can be confusing as it can be read as the speed of the left edge. This goes for the other variables that deal with the other directions for the speedup zone.
+
+These [variables](https://github.com/ensemble-ai/exercise-2-camera-control-lnguyenp48/blob/865fcc9f7dde09e6965db3a0c446e90192850802/Obscura/scripts/camera_controllers/lerp_leading.gd#L58) are type hinted as floats but are divided by an integer. This happens in lerp_leading.gd, pos_lock_lerp.gd, and pos_lock.gd.
+
 #### Best Practices Exemplars ####
+
+The code is very well documented with [comments](https://github.com/ensemble-ai/exercise-2-camera-control-lnguyenp48/blob/865fcc9f7dde09e6965db3a0c446e90192850802/Obscura/scripts/camera_controllers/auto_scroll.gd#L32) that explain what each block of code does.
+
+When used, [velocity](https://github.com/ensemble-ai/exercise-2-camera-control-lnguyenp48/blob/865fcc9f7dde09e6965db3a0c446e90192850802/Obscura/scripts/camera_controllers/lerp_leading.gd#L36) is multiplied by delta.
+
+There are many commits on the repository and a change log in README.md.
